@@ -18,6 +18,7 @@
     <Folder Include="ViewModel\" />
     <Folder Include="Services\" />
     <Folder Include="Behaviors\" />
+    <Folder Include="Navigation\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="ViewModel\StartViewModel.xml" />

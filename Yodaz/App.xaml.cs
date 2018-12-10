@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Yodaz.Navigation;
 using Yodaz.View;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -12,8 +13,15 @@ namespace Yodaz
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new StartPage());
+            NavigationService.Configure("StartPage", typeof(View.StartPage));
+            NavigationService.Configure("QuizPage", typeof(View.QuizPage));
+            var mainPage = ((ViewNavigationService)NavigationService).SetRootPage("StartPage");
+
+            MainPage = mainPage;
         }
+
+        public static INavigationService NavigationService { get; } = new ViewNavigationService();
+
 
         protected override void OnStart()
         {

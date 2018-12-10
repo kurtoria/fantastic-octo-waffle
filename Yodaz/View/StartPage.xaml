@@ -4,14 +4,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:vm="clr-namespace:Yodaz.ViewModel;assembly=Yodaz"
     xmlns:behaviors="clr-namespace:Yodaz.Behaviors"
-    x:Class="Yodaz.View.StartPage">
+    x:Class="Yodaz.View.StartPage"
+    Title="Root Page">
     <ContentPage.BindingContext>
         <vm:StartViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
            <Label Text="Welcome to Yodaz trivia quiz"></Label>
-           <Entry Placeholder="Enter number of questions">
+           <Entry Placeholder="Enter number of questions" Text="{Binding Number}">
                 <Entry.Behaviors>
                     <behaviors:NumberValidationBehavior/>
                 </Entry.Behaviors>

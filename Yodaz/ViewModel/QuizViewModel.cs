@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Yodaz.Model;
+using Yodaz.Services;
 using Yodaz.View;
 
 namespace Yodaz.ViewModel
@@ -13,6 +14,8 @@ namespace Yodaz.ViewModel
         {
             Number = User.Input;
             Console.WriteLine(Number);
+
+            TriviaParser triviaParser = new TriviaParser();
 
         }
     }

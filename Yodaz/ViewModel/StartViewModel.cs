@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Yodaz.Model;
 using Yodaz.Navigation;
 
 namespace Yodaz.ViewModel
@@ -22,6 +23,7 @@ namespace Yodaz.ViewModel
                 if (!value.Equals(number))
                 {
                     SetProperty(ref number, value);
+                    User.Input = Convert.ToInt32(number);
                     RefreshCanExecute();
                 }
             }
@@ -44,7 +46,6 @@ namespace Yodaz.ViewModel
 
         public async Task Navigate() 
         {
-            Console.WriteLine("TESTAR");
             await _navigationService.NavigateAsync("QuizPage");
         }
     }

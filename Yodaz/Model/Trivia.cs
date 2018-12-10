@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Yodaz.Model
 {
     public class Trivia

@@ -22,4 +22,10 @@
   <ItemGroup>
     <None Remove="ViewModel\StartViewModel.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="View\GamePage.xaml.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="View\GamePage.xaml" />
+  </ItemGroup>
 </Project>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Yodaz.View;
 
 namespace Yodaz.ViewModel
 {
@@ -10,8 +11,6 @@ namespace Yodaz.ViewModel
 
         public StartViewModel()
         {
-            StartCommand = new Command(
-            execute: () => Console.WriteLine("Fetch user input from entry.."));
         }
     }
 }

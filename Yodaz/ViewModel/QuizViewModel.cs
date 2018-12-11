@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using Yodaz.Model;
+using Yodaz.Services;
 using Yodaz.View;
 
 namespace Yodaz.ViewModel
@@ -28,12 +30,10 @@ namespace Yodaz.ViewModel
         public int Score { get; set; }
         public Trivia trivia;
 
-
         public QuizViewModel()
         {
-            trivia = new Trivia("Is it soon Christmas?", "true", "false");
-
-            Question = trivia.Question;
+       
+            Question = "Here comes question";
             Score = 0;
             Number = User.Input;
             Console.WriteLine(Number);
@@ -43,17 +43,37 @@ namespace Yodaz.ViewModel
                 canExecute: obj => obj != null 
                 );
 
+
+            //TriviaParser triviaParser = new TriviaParser();
+            //HTTPWebRequest hTTPWeb = new HTTPWebRequest(Number.ToString());
+            //hTTPWeb.GetTrivia();
+            HTTPWebRequest.Trivias.Clear();
+            HTTPWebRequest.GetTrivia(Number);
+            Console.WriteLine("---------------------------");
+            Console.WriteLine("Trivia count from QuizViewModel: " + HTTPWebRequest.Trivias.Count);
+            Console.WriteLine("---------------------------");
+
+            foreach (var t in HTTPWebRequest.Trivias)
+            {
+                Console.WriteLine("---------------------------");
+                Console.WriteLine(t.question);
+                Console.WriteLine("---------------------------");
+            }
+
         }
 
         private void CheckAnswer(string obj)
         {
-            if(obj.ToLower() == trivia.CorrectAnswer.ToLower() )
-            {
-                Question = "Correct";
-            } else 
-            {
-                Question = "Wrong";
-            }
+            //if(obj.ToLower() == trivia.CorrectAnswer.ToLower() )
+            //{
+            //    Question = "Correct";
+            //} else 
+            //{
+            //    Question = "Wrong";
+            //}
+
+
+
         }
     }
 }

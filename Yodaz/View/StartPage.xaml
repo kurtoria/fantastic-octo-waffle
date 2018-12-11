@@ -14,7 +14,7 @@
            <Entry Placeholder="Enter number of questions" Text="{Binding Number}">
                 <Entry.Behaviors>
                     <behaviors:NumberValidationBehavior/>
-                    <behaviors:MaxLengthValidationBehavior MaxLength="30"/>
+                    <behaviors:MaxLengthValidationBehavior MaxLength="2"/>
                 </Entry.Behaviors>
             </Entry>
            <Button Text="Start quiz" Command="{Binding StartCommand}"></Button>

@@ -20,12 +20,8 @@ namespace Yodaz.ViewModel
          }
             set 
             {
-                if (!value.Equals(number))
-                {
-                    SetProperty(ref number, value);
-                    User.Input = Convert.ToInt32(number);
-                    RefreshCanExecute();
-                }
+                SetProperty(ref number, value);
+                RefreshCanExecute();
             }
         }
        
@@ -46,6 +42,7 @@ namespace Yodaz.ViewModel
 
         public async Task Navigate() 
         {
+            User.Input = Convert.ToInt32(Number);
             await _navigationService.NavigateAsync("QuizPage");
         }
     }

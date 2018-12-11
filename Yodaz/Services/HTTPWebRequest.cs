@@ -90,8 +90,6 @@ namespace Yodaz.Services
 
 
             HttpClient client = new HttpClient();
-            // read the json into a string
-            // string could potentially be very large and cause memory problems
             string json = client.GetStringAsync(GetUrl(number)).Result;
             string trimStartString = json.TrimStart('{', '"', 'r', 'e', 's', 'p', 'o', 'n', 's', 'e', '_', 'c', 'o', 'd', 'e', ':', '0', ',', 'u', 'l', 't', 's');
             string trimEndString = trimStartString.TrimEnd('}');

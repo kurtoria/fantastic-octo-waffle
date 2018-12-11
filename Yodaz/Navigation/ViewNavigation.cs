@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Yodaz.View;
 
 namespace Yodaz.Navigation
 {
@@ -37,6 +38,11 @@ namespace Yodaz.Navigation
             var mainPage = new NavigationPage(rootPage);
             _navigationPageStack.Push(mainPage);
             return mainPage;
+        }
+        
+        public async Task Restart()
+        {
+            await CurrentNavigationPage.PopToRootAsync();
         }
 
         public string CurrentPageKey

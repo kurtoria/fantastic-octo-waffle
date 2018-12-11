@@ -1,59 +1,88 @@
 ﻿using System;
-using System.IO;
 using System.Net;
-using Xamarin.Forms;
+using System.IO;
+using Newtonsoft.Json;
+using Yodaz.Model;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Yodaz.Services
 {
     public class HTTPWebRequest
     {
-        private string url;
+        //public string Number { get; set; }
+        public static List<Trivia> Trivias = new List<Trivia>();
+        public string Url = "";
 
-        public HTTPWebRequest()
+        private static string GetUrl(int nr)
         {
-            CreateURL();
+            return "https://opentdb.com/api.php?amount=" + nr.ToString() + "&type=boolean";
         }
 
-        private void CreateURL() 
+        public static void GetTrivia(int number)
         {
-            url = "https://opentdb.com/api.php?amount=10";
-        }
+            HttpWebRequest WebReq = (HttpWebRequest)WebRequest.Create(string.Format(GetUrl(number)));
+            WebReq.Method = "GET";
 
-        public string SendRequest() 
-        {
-            var request = WebRequest.Create(url);
-            request.ContentType = "application/json";
-            request.Method = "GET";
+            HttpWebResponse WebResp = (HttpWebResponse)WebReq.GetResponse();
 
-            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+            Console.WriteLine("---------------------------");
+            Console.WriteLine(WebResp.StatusCode);
+            Console.WriteLine(WebResp.Server);
+
+            string jsonString;
+            using (Stream stream = WebResp.GetResponseStream())
             {
-                Console.WriteLine(response);
-                if (response.StatusCode != HttpStatusCode.OK)
-                    Console.WriteLine("Error fetching data. Server returned status code: {0}", response.StatusCode);
-                using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-                {
-                    var content = reader.ReadToEnd();
-                    if (string.IsNullOrWhiteSpace(content))
-                    {
-                        Console.WriteLine("Response contained empty body...");
-                        
-                    }
-                    else
-                    {
-                       // Console.WriteLine("Response Body: \r\n {0}", content);
+                StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8);
+                jsonString = reader.ReadToEnd();
+            }
+            string trimStartString = jsonString.TrimStart('{', '"', 'r', 'e', 's', 'p', 'o', 'n', 's', 'e', '_', 'c', 'o', 'd', 'e', ':', '0', ',', 'u', 'l', 't', 's');
+            string trimEndString = trimStartString.TrimEnd('}');
 
-                    }
-
-                    return content;
-                    //Aspect.NotNull(content);
-                }
+            try
+            {
+                Trivias = JsonConvert.DeserializeObject<List<Trivia>>(trimEndString);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine("ISSUE: " + e);
             }
         }
 
-        // Ansvarar för att komponera upp sök-url:n via userInput, 
-        // Och sen skicka en request.
+
+        //public static void GetTrivia2(string number)
+        //{
+        //    HttpWebRequest WebReq = (HttpWebRequest)WebRequest.Create(string.Format(GetUrl(number)));
+        //    WebReq.Method = "GET";
+
+        //    HttpWebResponse WebResp = (HttpWebResponse)WebReq.GetResponse();
+
+        //    Console.WriteLine("---------------------------");
+        //    Console.WriteLine(WebResp.StatusCode);
+        //    Console.WriteLine(WebResp.Server);
+
+        //    string jsonString;
+        //    using (Stream stream = WebResp.GetResponseStream())
+        //    {
+        //        StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8);
+        //        jsonString = reader.ReadToEnd();
+        //    }
+        //    AsyncDes(jsonString);
+        //}
 
 
+        //public static async Task<List<Trivia>> AsyncDes(string jsonString)
+        //{
+        //    string trimStartString = jsonString.TrimStart('{', '"', 'r', 'e', 's', 'p', 'o', 'n', 's', 'e', '_', 'c', 'o', 'd', 'e', ':', '0', ',', 'u', 'l', 't', 's');
+        //    string trimEndString = trimStartString.TrimEnd('}');
 
+        //    return Trivias = JsonConvert.DeserializeObject<List<Trivia>>(trimEndString);
+        //    //catch (Exception e)
+        //    //{
+        //    //    Console.WriteLine("\n");
+        //    //    Console.WriteLine("ISSUE: " + e);
+        //    //}
+        //}
     }
 }

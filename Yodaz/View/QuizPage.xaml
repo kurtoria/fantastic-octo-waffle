@@ -10,7 +10,8 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center">
-            <Label Text="{Binding Number}" FontSize="40" HorizontalOptions="Center" />
+            <Label Text="{Binding Number}" FontSize="20" HorizontalOptions="Center" />
+            <Label Text="{Binding Question}" FontSize="20" HorizontalOptions="Center" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

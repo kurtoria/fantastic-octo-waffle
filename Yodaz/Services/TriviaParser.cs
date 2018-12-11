@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace Yodaz.Services
 {
     public class TriviaParser
@@ -6,10 +7,10 @@ namespace Yodaz.Services
         public TriviaParser()
         {
 
-            HTTPWebRequest hTTPWebRequest = new HTTPWebRequest();
-            var result = hTTPWebRequest.SendRequest();
+            //HTTPWebRequest hTTPWebRequest = new HTTPWebRequest();
+            //var result = hTTPWebRequest.SendRequest();
 
-            Console.WriteLine(result);
+            //Console.WriteLine(result);
         }
 
         // Ansvarar för att hämta responset från HTTPwebReguest 

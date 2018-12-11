@@ -28,6 +28,7 @@ namespace Yodaz.ViewModel
 
         public StartViewModel()
         {
+            Console.WriteLine($"Number innehåller= {Number}");
             _navigationService = App.NavigationService;
 
             StartCommand = new Command(
@@ -44,6 +45,7 @@ namespace Yodaz.ViewModel
         {
             User.Input = Convert.ToInt32(Number);
             await _navigationService.NavigateAsync("QuizPage");
+            Number = "";
         }
     }
 }

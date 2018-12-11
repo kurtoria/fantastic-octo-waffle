@@ -20,36 +20,36 @@ namespace Yodaz.Services
             return "https://opentdb.com/api.php?amount=" + number.ToString() + "&type=boolean";
         }
 
-        //public static void GetTrivia(int number)
-        //{
-        //    HttpWebRequest WebReq = (HttpWebRequest)WebRequest.Create(string.Format(GetUrl(number)));
-        //    WebReq.Method = "GET";
+        public static void GetTrivia(int number)
+        {
+            HttpWebRequest WebReq = (HttpWebRequest)WebRequest.Create(string.Format(GetUrl(number)));
+            WebReq.Method = "GET";
 
-        //    HttpWebResponse WebResp = (HttpWebResponse)WebReq.GetResponse();
+            HttpWebResponse WebResp = (HttpWebResponse)WebReq.GetResponse();
 
-        //    Console.WriteLine("---------------------------");
-        //    Console.WriteLine(WebResp.StatusCode);
-        //    Console.WriteLine(WebResp.Server);
+            Console.WriteLine("---------------------------");
+            Console.WriteLine(WebResp.StatusCode);
+            Console.WriteLine(WebResp.Server);
 
-        //    string jsonString;
-        //    using (Stream stream = WebResp.GetResponseStream())
-        //    {
-        //        StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8);
-        //        jsonString = reader.ReadToEnd();
-        //    }
-        //    string trimStartString = jsonString.TrimStart('{', '"', 'r', 'e', 's', 'p', 'o', 'n', 's', 'e', '_', 'c', 'o', 'd', 'e', ':', '0', ',', 'u', 'l', 't', 's');
-        //    string trimEndString = trimStartString.TrimEnd('}');
+            string jsonString;
+            using (Stream stream = WebResp.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8);
+                jsonString = reader.ReadToEnd();
+            }
+            string trimStartString = jsonString.TrimStart('{', '"', 'r', 'e', 's', 'p', 'o', 'n', 's', 'e', '_', 'c', 'o', 'd', 'e', ':', '0', ',', 'u', 'l', 't', 's');
+            string trimEndString = trimStartString.TrimEnd('}');
 
-        //    try
-        //    {
-        //        Trivias = JsonConvert.DeserializeObject<List<Trivia>>(trimEndString);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Console.WriteLine("\n");
-        //        Console.WriteLine("ISSUE: " + e);
-        //    }
-        //}
+            try
+            {
+                Trivias = JsonConvert.DeserializeObject<List<Trivia>>(trimEndString);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("\n");
+                Console.WriteLine("ISSUE: " + e);
+            }
+        }
 
 
         public static async Task GetTriviaAsync(int number)
@@ -58,8 +58,8 @@ namespace Yodaz.Services
             WebReq.Method = "GET";
 
             //asynca denna?
-            //HttpWebResponse WebResp = await Task.Run(() => (HttpWebResponse)WebReq.GetResponse());
-            HttpWebResponse WebResp = (HttpWebResponse)WebReq.GetResponse();
+            HttpWebResponse WebResp = await Task.Run(() => (HttpWebResponse)WebReq.GetResponse());
+            //HttpWebResponse WebResp = (HttpWebResponse)WebReq.GetResponse());
 
             Console.WriteLine("---------------------------");
             Console.WriteLine(WebResp.StatusCode);
@@ -77,8 +77,8 @@ namespace Yodaz.Services
 
             try
             {
-                //Trivias = await Task.Run(() => JsonConvert.DeserializeObject<List<Trivia>>(trimEndString));
-                Trivias = JsonConvert.DeserializeObject<List<Trivia>>(trimEndString);
+                Trivias = await Task.Run(() => JsonConvert.DeserializeObject<List<Trivia>>(trimEndString));
+                //Trivias = JsonConvert.DeserializeObject<List<Trivia>>(trimEndString);
                 Console.WriteLine("--------------------------------------");
                 Console.WriteLine("Trivia count from QuizViewModel: " + HTTPWebRequest.Trivias.Count);
                 Console.WriteLine("--------------------------------------");

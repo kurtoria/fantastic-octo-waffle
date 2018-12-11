@@ -10,13 +10,14 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
        <StackLayout>   
-        <StackLayout VerticalOptions="StartAndExpand" Margin="0, 100">
+        <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="Center" Margin="0, 100" >
 <!--            <Label Text="{Binding Number}" FontSize="40" HorizontalOptions="Center" />-->
             <Label Text="{Binding Question}" FontSize="40" HorizontalOptions="Center" />
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0, 50">
                 <Button Text="TRUE" FontSize="40" Padding="20" Command="{Binding AnswerCommand}" CommandParameter="true"/>
                 <Button Text="FALSE" FontSize="40" Padding="20" Command="{Binding AnswerCommand}" CommandParameter="false"/>
             </StackLayout>
+                 <Label Text="{Binding Result}" FontSize="20"/>  
         </StackLayout>
                <StackLayout VerticalOptions="End" HorizontalOptions="Center" Orientation="Horizontal" Margin="0,0,0,20">
                 <Label Text="Score: " FontSize="40"/> 

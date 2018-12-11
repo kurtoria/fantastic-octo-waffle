@@ -7,9 +7,10 @@
     <ContentPage.BindingContext>
         <vm:ResultViewModel/>
     </ContentPage.BindingContext>>
-    <StackLayout VerticalOptions="StartAndExpand" Margin="0, 100">
-        <Label Text="{Binding ResultText}"></Label>
+    <StackLayout
+        VerticalOptions="StartAndExpand" Margin="0, 100">
+        <Label Text="{Binding ResultText}" FontSize="40" HorizontalOptions="Center"/>
         <Label Text="{Binding FinalScore}" FontSize="40" HorizontalOptions="Center"/>
-         <Button Text="Play Again" FontSize="40" Padding="20" Command="{Binding PlayCommand}"/>
+        <Button Text="Play Again" FontSize="40" Padding="20" Command="{Binding PlayCommand}"/>
     </StackLayout>
 </ContentPage>

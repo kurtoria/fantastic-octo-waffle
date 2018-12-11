@@ -1,6 +1,4 @@
-﻿using System;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Yodaz.Model;
 using System.Windows.Input;
 using Yodaz.Navigation;
@@ -20,6 +18,7 @@ namespace Yodaz.ViewModel
         public ResultViewModel()
         {
             _navigationService = App.NavigationService;
+            SetResultText();
             FinalScore = $"{User.Result}/{User.Input}";
 
             PlayCommand = new Command(
@@ -29,7 +28,13 @@ namespace Yodaz.ViewModel
 
         public async Task PlayAgain()
         {
-            await _navigationService.NavigateAsync("StartPage");
+            User.Input = 0;
+            await _navigationService.Restart(); 
+        }
+
+        public void SetResultText()
+        {
+            ResultText = "Resultatet";
         }
     }
 }

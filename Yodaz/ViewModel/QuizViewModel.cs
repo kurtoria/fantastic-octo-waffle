@@ -43,24 +43,14 @@ namespace Yodaz.ViewModel
                 canExecute: obj => obj != null 
                 );
 
-
-            //TriviaParser triviaParser = new TriviaParser();
-            //HTTPWebRequest hTTPWeb = new HTTPWebRequest(Number.ToString());
-            //hTTPWeb.GetTrivia();
             HTTPWebRequest.Trivias.Clear();
             HTTPWebRequest.GetTrivia(Number);
             Console.WriteLine("---------------------------");
             Console.WriteLine("Trivia count from QuizViewModel: " + HTTPWebRequest.Trivias.Count);
             Console.WriteLine("---------------------------");
-
-            foreach (var t in HTTPWebRequest.Trivias)
-            {
-                Console.WriteLine("---------------------------");
-                Console.WriteLine(t.question);
-                Console.WriteLine("---------------------------");
-            }
-
         }
+
+
 
         private void CheckAnswer(string obj)
         {
@@ -71,8 +61,6 @@ namespace Yodaz.ViewModel
             //{
             //    Question = "Wrong";
             //}
-
-
 
         }
     }

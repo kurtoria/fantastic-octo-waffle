@@ -4,6 +4,12 @@
              x:Class="Yodaz.View.ResultPage"
              xmlns:vm="clr-namespace:Yodaz.ViewModel;assembly=Yodaz"
              Title="ResultPage">
-    <ContentPage.Content>
-    </ContentPage.Content>
+    <ContentPage.BindingContext>
+        <vm:ResultViewModel/>
+    </ContentPage.BindingContext>>
+    <StackLayout VerticalOptions="StartAndExpand" Margin="0, 100">
+        <Label Text="{Binding ResultText}"></Label>
+        <Label Text="{Binding FinalScore}" FontSize="40" HorizontalOptions="Center"/>
+         <Button Text="Play Again" FontSize="40" Padding="20" Command="{Binding PlayCommand}"/>
+    </StackLayout>
 </ContentPage>

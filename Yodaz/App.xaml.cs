@@ -16,7 +16,7 @@ namespace Yodaz
             NavigationService.Configure("StartPage", typeof(View.StartPage));
             NavigationService.Configure("QuizPage", typeof(View.QuizPage));
             NavigationService.Configure("ResultPage", typeof(View.ResultPage));
-            var mainPage = ((ViewNavigationService)NavigationService).SetRootPage("ResultPage");
+            var mainPage = ((ViewNavigationService)NavigationService).SetRootPage("StartPage");
 
             MainPage = mainPage;
         }

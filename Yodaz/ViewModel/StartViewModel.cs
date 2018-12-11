@@ -42,6 +42,11 @@ namespace Yodaz.ViewModel
 
         public async Task Navigate() 
         {
+            int nr = Convert.ToInt32(Number);
+            if (nr > 50)
+            {
+                Number = "50";
+            }
             User.Input = Convert.ToInt32(Number);
             await _navigationService.NavigateAsync("QuizPage");
         }

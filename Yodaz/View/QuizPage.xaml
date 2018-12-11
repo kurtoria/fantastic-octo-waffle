@@ -4,9 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     x:Class="Yodaz.View.QuizPage"
     xmlns:vm="clr-namespace:Yodaz.ViewModel;assembly=Yodaz"
-    Title="QuizPage"
-    BackgroundColor="Gray"
-    BackgroundImage="bg.jpg">
+    Title="QuizPage">
     <ContentPage.BindingContext>
         <vm:QuizViewModel/>
     </ContentPage.BindingContext>
@@ -14,15 +12,15 @@
        <StackLayout>   
         <StackLayout VerticalOptions="StartAndExpand" Margin="0, 100">
 <!--            <Label Text="{Binding Number}" FontSize="40" HorizontalOptions="Center" />-->
-            <Label Text="Question" FontSize="40" HorizontalOptions="Center" />
+            <Label Text="{Binding Question}" FontSize="40" HorizontalOptions="Center" />
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0, 50">
-                <Button Text="TRUE" FontSize="40" Padding="20"/>
-                <Button Text="FALSE" FontSize="40" Padding="20"/>
+                <Button Text="TRUE" FontSize="40" Padding="20" Command="{Binding AnswerCommand}" CommandParameter="true"/>
+                <Button Text="FALSE" FontSize="40" Padding="20" Command="{Binding AnswerCommand}" CommandParameter="false"/>
             </StackLayout>
         </StackLayout>
                <StackLayout VerticalOptions="End" HorizontalOptions="Center" Orientation="Horizontal" Margin="0,0,0,20">
                 <Label Text="Score: " FontSize="40"/> 
-                <Label Text="0" FontSize="40"/> 
+                <Label Text="{Binding Score}" FontSize="40"/> 
             </StackLayout>   
        </StackLayout> 
     </ContentPage.Content>

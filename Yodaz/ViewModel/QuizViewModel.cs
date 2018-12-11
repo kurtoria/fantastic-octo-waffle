@@ -69,7 +69,6 @@ namespace Yodaz.ViewModel
 
             fetchQuestions();
 
-
         }
 
         private void fetchQuestions()
@@ -78,6 +77,7 @@ namespace Yodaz.ViewModel
             //TriviaParser triviaParser = new TriviaParser();
             //HTTPWebRequest hTTPWeb = new HTTPWebRequest(Number.ToString());
             //hTTPWeb.GetTrivia();
+
             HTTPWebRequest.Trivias.Clear();
             HTTPWebRequest.GetTrivia(Number);
             Console.WriteLine("---------------------------");
@@ -93,7 +93,11 @@ namespace Yodaz.ViewModel
             }
 
             DisplayQuestion();
+
         }
+
+
+
 
         private void DisplayQuestion()
         {
@@ -127,8 +131,6 @@ namespace Yodaz.ViewModel
 
             stack.Pop();
             DisplayQuestion();
-
-
 
         }
 

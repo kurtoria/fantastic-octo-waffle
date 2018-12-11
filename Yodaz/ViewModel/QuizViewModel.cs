@@ -14,7 +14,7 @@ namespace Yodaz.ViewModel
 
         public QuizViewModel()
         {
-            //Number = User.Input;
+            Number = User.Input;
             Console.WriteLine(Number);
 
             //TriviaParser triviaParser = new TriviaParser();
@@ -25,6 +25,13 @@ namespace Yodaz.ViewModel
             Console.WriteLine("---------------------------");
             Console.WriteLine("Trivia count from QuizViewModel: " + HTTPWebRequest.Trivias.Count);
             Console.WriteLine("---------------------------");
+
+            foreach (var t in HTTPWebRequest.Trivias)
+            {
+                Console.WriteLine("---------------------------");
+                Console.WriteLine(t.question);
+                Console.WriteLine("---------------------------");
+            }
 
         }
     }

@@ -9,8 +9,6 @@ namespace Yodaz.iOS
     public class IOSToast : IToast
     {
         const double SHORT_DELAY = 2.0;
-        NSTimer toastDelay;
-        UIAlertController alert;
 
         public void ShortAlert(string message)
         {
@@ -19,19 +17,17 @@ namespace Yodaz.iOS
 
         private void ShowToast(string message, double seconds)
         {
+            var alert = UIAlertController.Create(null, message, UIAlertControllerStyle.Alert);
 
-            toastDelay = NSTimer.CreateScheduledTimer(seconds, (obj) =>
+            var toastDelay = NSTimer.CreateScheduledTimer(seconds, (obj) =>
             {
-                DismissMessage();
+                DismissMessage(alert,obj);
             });
-            alert = UIAlertController.Create(null, message, UIAlertControllerStyle.Alert);
-            //UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(alert, true, null);
-            UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(alert, true, () => {
-                UIApplication.SharedApplication.KeyWindow.RootViewController.DismissViewController(true, null);
-             });
+            UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(alert, true, null);
+          
         }
 
-        private void DismissMessage()
+        private void DismissMessage(UIAlertController alert, NSTimer toastDelay)
         {
             if (alert != null) 
             {

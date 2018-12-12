@@ -21,17 +21,20 @@ namespace Yodaz.ViewModel
             set 
             {
                 SetProperty(ref number, value);
+                int result;
+                IsValid = int.TryParse(value, out result);
+             
                 RefreshCanExecute();
             }
         }
-       
+       public bool IsValid { get; set; }
 
         public StartViewModel()
         {
             _navigationService = App.NavigationService;
             StartCommand = new Command(
                 execute: async () => await Navigate(),
-                canExecute: () => !string.IsNullOrEmpty(Number));
+                canExecute: () => IsValid);
         }
 
 

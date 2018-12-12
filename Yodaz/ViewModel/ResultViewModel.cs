@@ -38,7 +38,7 @@ namespace Yodaz.ViewModel
 
         public void SetResultText()
         {
-            ResultText = "Resultatet";
+            ResultText = "Result:";
         }
     }
 }

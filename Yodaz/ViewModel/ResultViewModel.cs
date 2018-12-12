@@ -31,7 +31,8 @@ namespace Yodaz.ViewModel
         {
             User.Input = 0;
             HTTPWebRequest.Trivias.Clear();
-            HTTPWebRequest.GetQuestions(1);
+            //await HTTPWebRequest.GetQuestions(1);
+            HTTPWebRequest.GetTrivia(1);
             await _navigationService.Restart(); 
         }
 

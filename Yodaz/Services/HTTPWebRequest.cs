@@ -137,56 +137,58 @@ using System; using System.Net; using System.IO; using Newtonsoft.Json; 
 
 
 
-        public static void FetchFirstQuestion()
-        {
-            throw new NotImplementedException();
-        }
+        //public static void FetchFirstQuestion()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
 
-        public static async Task GetQuestions(int number)
-        {
-            HttpWebRequest WebReq = (HttpWebRequest)WebRequest.Create(string.Format(GetUrl(number)));
-            WebReq.Method = "GET";
+        //public static async Task GetQuestions(int number)
+        //{
+        //    HttpWebRequest WebReq = (HttpWebRequest)WebRequest.Create(string.Format(GetUrl(number)));
+        //    WebReq.Method = "GET";
 
-            HttpWebResponse WebResp = await Task.Run(() => (HttpWebResponse)WebReq.GetResponse());
+        //    HttpWebResponse WebResp = await Task.Run(() => (HttpWebResponse)WebReq.GetResponse());
 
-            //SetUpWebReqAndResp(number);
+        //    //SetUpWebReqAndResp(number);
 
-            Console.WriteLine("---------------------------");
-            Console.WriteLine(WebResp.StatusCode);
-            Console.WriteLine(WebResp.Server);
+        //    Console.WriteLine("---------------------------");
+        //    Console.WriteLine(WebResp.StatusCode);
+        //    Console.WriteLine(WebResp.Server);
 
-            string jsonString;
-            using (Stream stream = WebResp.GetResponseStream())
-            {
-                StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8);
-                jsonString = reader.ReadToEnd();
-            }
-            string trimStartString = jsonString.TrimStart('{', '"', 'r', 'e', 's', 'p', 'o', 'n', 's', 'e', '_', 'c', 'o', 'd', 'e', ':', '0', ',', 'u', 'l', 't', 's');
-            string trimEndString = trimStartString.TrimEnd('}');
+        //    string jsonString;
+        //    using (Stream stream = WebResp.GetResponseStream())
+        //    {
+        //        StreamReader reader = new StreamReader(stream, System.Text.Encoding.UTF8);
+        //        jsonString = reader.ReadToEnd();
+        //    }
+        //    string trimStartString = jsonString.TrimStart('{', '"', 'r', 'e', 's', 'p', 'o', 'n', 's', 'e', '_', 'c', 'o', 'd', 'e', ':', '0', ',', 'u', 'l', 't', 's');
+        //    string trimEndString = trimStartString.TrimEnd('}');
 
-            try
-            {
-                //Trivias = await Task.Run(() => JsonConvert.DeserializeObject<List<Trivia>>(GetJsonString(SetUpWebReqAndResp(number))));
-                Trivias = await Task.Run(() => JsonConvert.DeserializeObject<List<Trivia>>(trimEndString));
-                //Trivias = JsonConvert.DeserializeObject<List<Trivia>>(trimEndString);
-                Console.WriteLine("--------------------------------------");
-                Console.WriteLine("Trivia count from QuizViewModel: " + HTTPWebRequest.Trivias.Count);
-                Console.WriteLine("--------------------------------------");
-                foreach (var t in HTTPWebRequest.Trivias)
-                {
-                    Console.WriteLine("---------------------------");
-                    Console.WriteLine(t.question);
-                    Console.WriteLine("---------------------------");
-                }
+        //    try
+        //    {
+        //        //Trivias = await Task.Run(() => JsonConvert.DeserializeObject<List<Trivia>>(GetJsonString(SetUpWebReqAndResp(number))));
+        //        Trivias = await Task.Run(() => JsonConvert.DeserializeObject<List<Trivia>>(trimEndString));
+        //        //Trivias = JsonConvert.DeserializeObject<List<Trivia>>(trimEndString);
+        //        Console.WriteLine("--------------------------------------");
+        //        Console.WriteLine("Trivia count from QuizViewModel: " + HTTPWebRequest.Trivias.Count);
+        //        Console.WriteLine("--------------------------------------");
+        //        foreach (var t in HTTPWebRequest.Trivias)
+        //        {
+        //            Console.WriteLine("---------------------------");
+        //            Console.WriteLine(t.question);
+        //            Console.WriteLine("---------------------------");
+        //        }
 
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("\n");
-                Console.WriteLine("ISSUE: " + e);
-            }
-        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine("\n");
+        //        Console.WriteLine("ISSUE: " + e);
+        //    }
+        //}
+
+
 
 
 

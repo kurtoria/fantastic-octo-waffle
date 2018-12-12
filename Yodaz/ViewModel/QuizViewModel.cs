@@ -85,6 +85,7 @@ namespace Yodaz.ViewModel
             //HTTPWebRequest.Trivias.Clear();
 
             HTTPWebRequest.GetTrivia(Number - 1);
+            //HTTPWebRequest.GetQuestions(Number - 1);
             Console.WriteLine("---------------------------");
             Console.WriteLine("Trivia count from QuizViewModel: " + HTTPWebRequest.Trivias.Count);
             Console.WriteLine("---------------------------");

@@ -28,9 +28,7 @@ namespace Yodaz.ViewModel
 
         public StartViewModel()
         {
-            Console.WriteLine($"Number innehåller= {Number}");
             _navigationService = App.NavigationService;
-
             StartCommand = new Command(
                 execute: async () => await Navigate(),
                 canExecute: () => !string.IsNullOrEmpty(Number));

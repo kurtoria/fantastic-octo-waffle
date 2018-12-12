@@ -4,20 +4,37 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     xmlns:vm="clr-namespace:Yodaz.ViewModel;assembly=Yodaz"
     xmlns:behaviors="clr-namespace:Yodaz.Behaviors"
-    x:Class="Yodaz.View.StartPage">
+    x:Class="Yodaz.View.StartPage"
+    NavigationPage.BarBackgroundColor="#A45BB2">
     <ContentPage.BindingContext>
         <vm:StartViewModel/>
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="button" TargetType="Button">
+                <Setter Property="TextColor" Value="#B8BFBF"/>
+                <Setter Property="BorderRadius" Value="6"/>
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="Padding" Value="6"/>
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="BackgroundColor" Value="#A45BB2"/>
+            </Style>
+            <Style x:Key="entry" TargetType="Entry">
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="Margin" Value="10"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-           <Label Text="Welcome to Yodaz trivia quiz"></Label>
-           <Entry Placeholder="Enter number of questions" Text="{Binding Number}">
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+           <Label Text="Welcome to Yodaz trivia quiz" FontSize="30" Margin="10" ></Label>
+           <Entry Placeholder="Enter number of questions" Text="{Binding Number}" Style="{StaticResource entry}">
                 <Entry.Behaviors>
                     <behaviors:NumberValidationBehavior/>
                     <behaviors:MaxLengthValidationBehavior MaxLength="2"/>
                 </Entry.Behaviors>
             </Entry>
-           <Button Text="Start quiz" Command="{Binding StartCommand}"></Button>
+           <Button Text="Start quiz" Style="{StaticResource button}" Command="{Binding StartCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

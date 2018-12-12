@@ -8,21 +8,31 @@
     <ContentPage.BindingContext>
         <vm:QuizViewModel/>
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="button" TargetType="Button">
+                <Setter Property="TextColor" Value="#B8BFBF"/>
+                <Setter Property="BorderRadius" Value="6"/>
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="Padding" Value="20,6,20,6"/>
+                <Setter Property="BackgroundColor" Value="#A45BB2"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-       <StackLayout>   
-        <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="Center" Margin="0, 100" >
-<!--            <Label Text="{Binding Number}" FontSize="40" HorizontalOptions="Center" />-->
-            <Label Text="{Binding Question}" FontSize="40" HorizontalOptions="Center" />
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0, 50">
-                <Button Text="TRUE" FontSize="40" Padding="20" Command="{Binding AnswerCommand}" CommandParameter="true"/>
-                <Button Text="FALSE" FontSize="40" Padding="20" Command="{Binding AnswerCommand}" CommandParameter="false"/>
-            </StackLayout>
-                 <Label Text="{Binding Result}" FontSize="20"/>  
-        </StackLayout>
-               <StackLayout VerticalOptions="End" HorizontalOptions="Center" Orientation="Horizontal" Margin="0,0,0,20">
-                <Label Text="Score: " FontSize="40"/> 
-                <Label Text="{Binding Score}" FontSize="40"/> 
-            </StackLayout>   
+       <StackLayout VerticalOptions="Center" HorizontalOptions="Center">   
+        <StackLayout>
+            <Label HorizontalTextAlignment="Center" Text="{Binding Question}" FontSize="30" HorizontalOptions="Center" Margin="10"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0, 50">
+                    <Button Text="TRUE" Style="{StaticResource button}" Command="{Binding AnswerCommand}" CommandParameter="true"/>
+                    <Button Text="FALSE" Style="{StaticResource button}" Command="{Binding AnswerCommand}" CommandParameter="false"/>
+                </StackLayout>
+            <Label Text="{Binding Result}" FontSize="20"/>  
+                </StackLayout>
+                   <StackLayout VerticalOptions="End" HorizontalOptions="Center" Orientation="Horizontal" Margin="0,0,0,20">
+                    <Label Text="Score: " FontSize="40"/> 
+                    <Label Text="{Binding Score}" FontSize="40"/> 
+                </StackLayout>   
        </StackLayout> 
     </ContentPage.Content>
 </ContentPage>

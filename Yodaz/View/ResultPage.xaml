@@ -7,10 +7,22 @@
              NavigationPage.HasBackButton="false">
     <ContentPage.BindingContext>
         <vm:ResultViewModel/>
-    </ContentPage.BindingContext>>
-    <StackLayout VerticalOptions="StartAndExpand" Margin="0, 100">
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="button" TargetType="Button">
+                <Setter Property="TextColor" Value="#B8BFBF"/>
+                <Setter Property="BorderRadius" Value="6"/>
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="Padding" Value="8"/>
+                <Setter Property="Margin" Value="10"/>
+                <Setter Property="BackgroundColor" Value="#A45BB2"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
         <Label Text="{Binding ResultText}" FontSize="40" HorizontalOptions="Center"/>
         <Label Text="{Binding FinalScore}" FontSize="40" HorizontalOptions="Center"/>
-        <Button Text="Play Again" FontSize="40" Padding="20" Command="{Binding PlayCommand}"/>
+        <Button Text="Play Again" Style="{StaticResource button}" Command="{Binding PlayCommand}"/>
     </StackLayout>
 </ContentPage>

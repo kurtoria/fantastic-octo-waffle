@@ -58,13 +58,13 @@ namespace Yodaz.ViewModel
               }
         }
         public Trivia trivia;
+        private int count;
 
         public QuizViewModel()
         {
             _navigationService = App.NavigationService;
             Number = User.Input;
             stack.Push(HTTPWebRequest.Trivias[0]);
-            Question = "Here comes question";
             Score = 0;
             AnswerCommand = new Command<string>(
                 execute: CheckAnswer,
@@ -77,42 +77,24 @@ namespace Yodaz.ViewModel
 
         private void fetchQuestions()
         {
-
-            //TriviaParser triviaParser = new TriviaParser();
-            //HTTPWebRequest hTTPWeb = new HTTPWebRequest(Number.ToString());
-            //hTTPWeb.GetTrivia();
-
-            //HTTPWebRequest.Trivias.Clear();
-
-
             if (Number != 1)
             {
                 HTTPWebRequest.GetTrivia(Number - 1);
-                //HTTPWebRequest.GetQuestions(Number - 1);
-                Console.WriteLine("---------------------------");
-                Console.WriteLine("Trivia count from QuizViewModel: " + HTTPWebRequest.Trivias.Count);
-                Console.WriteLine("---------------------------");
                 foreach (var t in HTTPWebRequest.Trivias)
                 {
-                    Console.WriteLine("---------------------------");
-                    Console.WriteLine(t.question);
-                    Console.WriteLine("---------------------------");
                     stack.Push(t);
                 }
 
                 DisplayQuestion();
             }
 
-
         }
-
-
-
 
         private void DisplayQuestion()
         {
             if(stack.Count > 0) 
             {
+                Result = ""+ count + "/" + Number;
                 RefreshCanExecute();
                 trivia = stack.Peek();
                 var text = trivia.question;
@@ -128,7 +110,6 @@ namespace Yodaz.ViewModel
                 RefreshCanExecute();
                 User.Result = Score;
                 _navigationService.NavigateAsync("ResultPage");
-                Console.WriteLine("END OF QUIZ");
             }
         }
 
@@ -139,14 +120,10 @@ namespace Yodaz.ViewModel
             if (obj.ToLower() == trivia.correct_answer.ToLower())
             {
                 Score += 1;
-                Result = "Correct";
-
-            } else 
-            {
-                Result = "Wrong";
-            }
+            } 
 
             stack.Pop();
+            count += 1;
             DisplayQuestion();
 
         }

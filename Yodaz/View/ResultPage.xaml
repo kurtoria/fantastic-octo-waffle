@@ -14,7 +14,7 @@
                 <Setter Property="TextColor" Value="White"/>
                 <Setter Property="BorderRadius" Value="6"/>
                 <Setter Property="FontSize" Value="30"/>
-                <Setter Property="Padding" Value="8"/>
+                <Setter Property="Padding" Value="15, 8"/>
                 <Setter Property="Margin" Value="10"/>
                 <Setter Property="BackgroundColor" Value="#3EB4BF"/>
             </Style>

@@ -34,6 +34,7 @@ namespace Yodaz.ViewModel
                 canExecute: () => !string.IsNullOrEmpty(Number));
         }
 
+
         public void RefreshCanExecute() 
         {
             (StartCommand as Command).ChangeCanExecute();
@@ -44,11 +45,15 @@ namespace Yodaz.ViewModel
             int nr = Convert.ToInt32(Number);
             if (nr > 50)
             {
-                Number = "50";
+                DependencyService.Get<IToast>().ShortAlert("Only 50 questions allowed");
+                //Number = "50";
             }
+            else
+            { 
             User.Input = Convert.ToInt32(Number);
             await _navigationService.NavigateAsync("QuizPage");
             Number = "";
+            }
         }
     }
 }

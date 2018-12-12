@@ -3,6 +3,7 @@ using Yodaz.Model;
 using System.Windows.Input;
 using Yodaz.Navigation;
 using System.Threading.Tasks;
+using Yodaz.Services;
 
 namespace Yodaz.ViewModel
 {
@@ -29,6 +30,8 @@ namespace Yodaz.ViewModel
         public async Task PlayAgain()
         {
             User.Input = 0;
+            HTTPWebRequest.Trivias.Clear();
+            HTTPWebRequest.GetQuestions(1);
             await _navigationService.Restart(); 
         }
 

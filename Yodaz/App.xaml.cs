@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Yodaz.Navigation;
+using Yodaz.Services;
 using Yodaz.View;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -27,6 +28,7 @@ namespace Yodaz
         protected override void OnStart()
         {
             // Handle when your app starts
+            HTTPWebRequest.GetQuestions(1);
         }
 
         protected override void OnSleep()

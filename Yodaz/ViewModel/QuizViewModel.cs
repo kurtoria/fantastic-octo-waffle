@@ -63,13 +63,14 @@ namespace Yodaz.ViewModel
         {
             _navigationService = App.NavigationService;
             Number = User.Input;
+            stack.Push(HTTPWebRequest.Trivias[0]);
             Question = "Here comes question";
             Score = 0;
             AnswerCommand = new Command<string>(
                 execute: CheckAnswer,
                 canExecute: obj => stack.Count > 0 
                 );
-
+            DisplayQuestion();
             fetchQuestions();
 
         }
@@ -81,8 +82,9 @@ namespace Yodaz.ViewModel
             //HTTPWebRequest hTTPWeb = new HTTPWebRequest(Number.ToString());
             //hTTPWeb.GetTrivia();
 
-            HTTPWebRequest.Trivias.Clear();
-            HTTPWebRequest.GetTrivia(Number);
+            //HTTPWebRequest.Trivias.Clear();
+
+            HTTPWebRequest.GetTrivia(Number - 1);
             Console.WriteLine("---------------------------");
             Console.WriteLine("Trivia count from QuizViewModel: " + HTTPWebRequest.Trivias.Count);
             Console.WriteLine("---------------------------");
@@ -109,7 +111,9 @@ namespace Yodaz.ViewModel
                 RefreshCanExecute();
                 trivia = stack.Peek();
                 var text = trivia.question;
-                var trimmedString = text.Replace("&quot;", "'");
+                var trimmedString = text.Replace("&quot;", "\"");
+                trimmedString = trimmedString.Replace("&#039;", "'");
+                trimmedString = trimmedString.Replace("&amp;", "&");
                 Question = trimmedString;
             } else 
             {

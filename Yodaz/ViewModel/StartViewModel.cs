@@ -44,8 +44,10 @@ namespace Yodaz.ViewModel
             int nr = Convert.ToInt32(Number);
             if (nr > 50)
             {
+                DependencyService.Get<IToast>().ShortAlert("Only 50 questions allowed, quiz with 50 questions started");
                 Number = "50";
             }
+
             User.Input = Convert.ToInt32(Number);
             await _navigationService.NavigateAsync("QuizPage");
             Number = "";

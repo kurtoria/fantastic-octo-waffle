@@ -63,13 +63,14 @@ namespace Yodaz.ViewModel
         {
             _navigationService = App.NavigationService;
             Number = User.Input;
+            stack.Push(HTTPWebRequest.Trivias[0]);
             Question = "Here comes question";
             Score = 0;
             AnswerCommand = new Command<string>(
                 execute: CheckAnswer,
                 canExecute: obj => stack.Count > 0 
                 );
-
+            DisplayQuestion();
             fetchQuestions();
 
         }
@@ -81,21 +82,27 @@ namespace Yodaz.ViewModel
             //HTTPWebRequest hTTPWeb = new HTTPWebRequest(Number.ToString());
             //hTTPWeb.GetTrivia();
 
-            HTTPWebRequest.Trivias.Clear();
-            HTTPWebRequest.GetTrivia(Number);
-            Console.WriteLine("---------------------------");
-            Console.WriteLine("Trivia count from QuizViewModel: " + HTTPWebRequest.Trivias.Count);
-            Console.WriteLine("---------------------------");
+            //HTTPWebRequest.Trivias.Clear();
 
-            foreach (var t in HTTPWebRequest.Trivias)
+
+            if (Number != 1)
             {
+                HTTPWebRequest.GetTrivia(Number - 1);
+                //HTTPWebRequest.GetQuestions(Number - 1);
                 Console.WriteLine("---------------------------");
-                Console.WriteLine(t.question);
+                Console.WriteLine("Trivia count from QuizViewModel: " + HTTPWebRequest.Trivias.Count);
                 Console.WriteLine("---------------------------");
-                stack.Push(t);
+                foreach (var t in HTTPWebRequest.Trivias)
+                {
+                    Console.WriteLine("---------------------------");
+                    Console.WriteLine(t.question);
+                    Console.WriteLine("---------------------------");
+                    stack.Push(t);
+                }
+
+                DisplayQuestion();
             }
 
-            DisplayQuestion();
 
         }
 
@@ -109,7 +116,10 @@ namespace Yodaz.ViewModel
                 RefreshCanExecute();
                 trivia = stack.Peek();
                 var text = trivia.question;
-                var trimmedString = text.Replace("&quot;", "'");
+                var trimmedString = text.Replace("&quot;", "\"");
+                trimmedString = trimmedString.Replace("&#039;", "'");
+                trimmedString = trimmedString.Replace("&amp;", "&");
+                trimmedString = trimmedString.Replace("&eacute;", "é");
                 Question = trimmedString;
             } else 
             {

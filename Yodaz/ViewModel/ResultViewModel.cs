@@ -1,19 +1,40 @@
-﻿using System;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
+using Yodaz.Model;
+using System.Windows.Input;
+using Yodaz.Navigation;
+using System.Threading.Tasks;
 
 namespace Yodaz.ViewModel
 {
-    public class ResultViewModel : ContentPage
+    public class ResultViewModel
     {
+        INavigationService _navigationService;
+        public string FinalScore { get; set; }
+
+        public string ResultText { get; set; }
+
+        public ICommand PlayCommand { get; private set; }
+
         public ResultViewModel()
         {
-            Content = new StackLayout
-            {
-                Children = {
-                    new Label { Text = "Hello ContentPage" }
-                }
-            };
+            _navigationService = App.NavigationService;
+            SetResultText();
+            FinalScore = $"{User.Result}/{User.Input}";
+
+            PlayCommand = new Command(
+               execute: async () => await PlayAgain(),
+               canExecute: () => { return true; });
+        }
+
+        public async Task PlayAgain()
+        {
+            User.Input = 0;
+            await _navigationService.Restart(); 
+        }
+
+        public void SetResultText()
+        {
+            ResultText = "Resultatet";
         }
     }
 }

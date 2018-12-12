@@ -29,7 +29,6 @@ namespace Yodaz.ViewModel
         public StartViewModel()
         {
             _navigationService = App.NavigationService;
-
             StartCommand = new Command(
                 execute: async () => await Navigate(),
                 canExecute: () => !string.IsNullOrEmpty(Number));
@@ -49,6 +48,7 @@ namespace Yodaz.ViewModel
             }
             User.Input = Convert.ToInt32(Number);
             await _navigationService.NavigateAsync("QuizPage");
+            Number = "";
         }
     }
 }

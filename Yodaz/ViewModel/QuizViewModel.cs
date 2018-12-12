@@ -5,11 +5,13 @@ using Xamarin.Forms;
 using Yodaz.Model;
 using Yodaz.Services;
 using Yodaz.View;
+using Yodaz.Navigation;
 
 namespace Yodaz.ViewModel
 {
     public class QuizViewModel : BaseViewModel
     {
+        INavigationService _navigationService;
         Stack<Trivia> stack = new Stack<Trivia>();
         public int Number { get; set; }
         public ICommand AnswerCommand { get; private set; }
@@ -59,6 +61,7 @@ namespace Yodaz.ViewModel
 
         public QuizViewModel()
         {
+            _navigationService = App.NavigationService;
             Number = User.Input;
             Question = "Here comes question";
             Score = 0;
@@ -111,6 +114,8 @@ namespace Yodaz.ViewModel
             } else 
             {
                 RefreshCanExecute();
+                User.Result = Score;
+                _navigationService.NavigateAsync("ResultPage");
                 Console.WriteLine("END OF QUIZ");
             }
         }

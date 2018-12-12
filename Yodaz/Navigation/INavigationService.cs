@@ -13,5 +13,6 @@ namespace Yodaz.Navigation
         Task NavigateModalAsync(string pageKey, object parameter, bool animated = true);
         Task NavigateAsync(string pageKey, bool animated = true);
         Task NavigateAsync(string pageKey, object parameter, bool animated = true);
+        Task Restart();
     }
 }

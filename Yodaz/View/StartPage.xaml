@@ -11,7 +11,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="button" TargetType="Button">
-                <Setter Property="TextColor" Value="#B8BFBF"/>
+                <Setter Property="TextColor" Value="White"/>
                 <Setter Property="BorderRadius" Value="6"/>
                 <Setter Property="FontSize" Value="30"/>
                 <Setter Property="Padding" Value="6"/>
@@ -26,7 +26,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-           <Label Text="Welcome to Yodaz trivia quiz" FontSize="30" Margin="10" ></Label>
+           <Label Text="Welcome to Yodaz trivia quiz" FontSize="30" Margin="10" TextColor="#5c5f5f"></Label>
            <Entry Placeholder="Enter number of questions" Text="{Binding Number}" Style="{StaticResource entry}">
                 <Entry.Behaviors>
                     <behaviors:NumberValidationBehavior/>

@@ -120,6 +120,8 @@ namespace Yodaz.ViewModel
                 trimmedString = trimmedString.Replace("&#039;", "'");
                 trimmedString = trimmedString.Replace("&amp;", "&");
                 trimmedString = trimmedString.Replace("&eacute;", "é");
+                trimmedString = trimmedString.Replace("&epsilon;", "ε");
+                trimmedString = trimmedString.Replace("&Phi;", "Φ");
                 Question = trimmedString;
             } else 
             {

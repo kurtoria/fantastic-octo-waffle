@@ -16,7 +16,7 @@
                 <Setter Property="FontSize" Value="30"/>
                 <Setter Property="Padding" Value="6"/>
                 <Setter Property="Margin" Value="10"/>
-                <Setter Property="BackgroundColor" Value="#A45BB2"/>
+                <Setter Property="BackgroundColor" Value="#3EB4Bf"/>
             </Style>
             <Style x:Key="entry" TargetType="Entry">
                 <Setter Property="FontSize" Value="30"/>

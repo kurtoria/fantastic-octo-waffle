@@ -20,19 +20,25 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-       <StackLayout VerticalOptions="Center" HorizontalOptions="Center">   
-        <StackLayout>
-                <Label Text="1/10" HorizontalTextAlignment="End" FontSize="40" Margin="10" TextColor="#5c5f5f"></Label>
-            <Label HorizontalTextAlignment="Center" Text="{Binding Question}" FontSize="30" HorizontalOptions="Center" Margin="10" TextColor="#5c5f5f"/>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0, 50">
+       <StackLayout  HorizontalOptions="Center">  
+            
+        <StackLayout VerticalOptions="StartAndExpand">
+            <Label Text="{Binding Result}" HorizontalTextAlignment="End" FontSize="40" Margin="10" TextColor="#5c5f5f"></Label>
+            <Label HorizontalTextAlignment="Center" Text="{Binding Question}" FontSize="30" HorizontalOptions="Center" Margin="10, 30, 10, 10 " TextColor="#5c5f5f"/>
+         </StackLayout>
+            
+         <StackLayout VerticalOptions="End">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0, 50" >
                     <Button Text="TRUE" Style="{StaticResource button}" Command="{Binding AnswerCommand}" CommandParameter="true"/>
                     <Button Text="FALSE" Style="{StaticResource button}" Command="{Binding AnswerCommand}" CommandParameter="false"/>
                 </StackLayout>
-                </StackLayout>
-                   <StackLayout VerticalOptions="End" HorizontalOptions="Center" Orientation="Horizontal" Margin="0,0,0,20">
+                <StackLayout VerticalOptions="End" HorizontalOptions="Center" Orientation="Horizontal" Margin="0,0,0,20">
                     <Label Text="Score: " FontSize="40" TextColor="#5c5f5f"/> 
                     <Label Text="{Binding Score}" FontSize="40" TextColor="#5c5f5f"/> 
-                </StackLayout>   
+                </StackLayout>    
+         </StackLayout>   
+            
+                  
        </StackLayout> 
     </ContentPage.Content>
 </ContentPage>

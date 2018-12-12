@@ -25,7 +25,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        <StackLayout VerticalOptions="StartAndExpand" Margin="0,60,0,0">
            <Label Text="Welcome to Yodaz trivia quiz" FontSize="30" Margin="10" TextColor="#5c5f5f"></Label>
            <Entry Placeholder="Enter number of questions" Text="{Binding Number}" Style="{StaticResource entry}">
                 <Entry.Behaviors>

@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="Yodaz.View.ResultPage"
              xmlns:vm="clr-namespace:Yodaz.ViewModel;assembly=Yodaz"
-             Title="ResultPage">
+             Title="ResultPage"
+             NavigationPage.HasBackButton="false">
     <ContentPage.BindingContext>
         <vm:ResultViewModel/>
     </ContentPage.BindingContext>>
-    <StackLayout
-        VerticalOptions="StartAndExpand" Margin="0, 100">
+    <StackLayout VerticalOptions="StartAndExpand" Margin="0, 100">
         <Label Text="{Binding ResultText}" FontSize="40" HorizontalOptions="Center"/>
         <Label Text="{Binding FinalScore}" FontSize="40" HorizontalOptions="Center"/>
         <Button Text="Play Again" FontSize="40" Padding="20" Command="{Binding PlayCommand}"/>

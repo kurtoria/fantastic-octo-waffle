@@ -84,21 +84,25 @@ namespace Yodaz.ViewModel
 
             //HTTPWebRequest.Trivias.Clear();
 
-            HTTPWebRequest.GetTrivia(Number - 1);
-            //HTTPWebRequest.GetQuestions(Number - 1);
-            Console.WriteLine("---------------------------");
-            Console.WriteLine("Trivia count from QuizViewModel: " + HTTPWebRequest.Trivias.Count);
-            Console.WriteLine("---------------------------");
 
-            foreach (var t in HTTPWebRequest.Trivias)
+            if (Number != 1)
             {
+                HTTPWebRequest.GetTrivia(Number - 1);
+                //HTTPWebRequest.GetQuestions(Number - 1);
                 Console.WriteLine("---------------------------");
-                Console.WriteLine(t.question);
+                Console.WriteLine("Trivia count from QuizViewModel: " + HTTPWebRequest.Trivias.Count);
                 Console.WriteLine("---------------------------");
-                stack.Push(t);
+                foreach (var t in HTTPWebRequest.Trivias)
+                {
+                    Console.WriteLine("---------------------------");
+                    Console.WriteLine(t.question);
+                    Console.WriteLine("---------------------------");
+                    stack.Push(t);
+                }
+
+                DisplayQuestion();
             }
 
-            DisplayQuestion();
 
         }
 
@@ -115,6 +119,7 @@ namespace Yodaz.ViewModel
                 var trimmedString = text.Replace("&quot;", "\"");
                 trimmedString = trimmedString.Replace("&#039;", "'");
                 trimmedString = trimmedString.Replace("&amp;", "&");
+                trimmedString = trimmedString.Replace("&eacute;", "é");
                 Question = trimmedString;
             } else 
             {

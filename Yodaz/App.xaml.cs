@@ -28,7 +28,6 @@ namespace Yodaz
         protected override void OnStart()
         {
             // Handle when your app starts
-            //HTTPWebRequest.GetQuestions(1);
             HTTPWebRequest.GetTrivia(1);
         }
 
